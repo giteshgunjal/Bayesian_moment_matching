@@ -80,6 +80,8 @@ int main(int argc, char** argv)
     input_a << 2., 14., 2., 10.,4.;
     Matrix<double , 5, 2>input_dataSet ;
     input_dataSet<< 1.,1/3.,5.,1/3.,7.,1/3.,8.,1/3.,2.,1/3.;
+    vector<double> measurements = {4.99164777 ,4.77152141 ,3.91641394, 4.55800433 ,3.8606777 , 3.74498796,
+    5.72879082 ,5.7962263 , 5.07160451 ,4.90461636};
 
-    momentmatching(input_dataSet, input_a);
+    momentmatching(input_dataSet, input_a,measurements);
 }

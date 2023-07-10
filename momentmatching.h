@@ -33,8 +33,7 @@ public:
     Matrix<double , num_classes, 2> & input_dataSetRef;
     Matrix<double , num_classes, 1> & input_aRef;
 
-    vector<double> measurements = {4.99164777 ,4.77152141 ,3.91641394, 4.55800433 ,3.8606777 , 3.74498796,
-    5.72879082 ,5.7962263 , 5.07160451 ,4.90461636};
+    vector<double>& measurements ;
 
     Matrix<double, num_classes, num_classes > exp_weigh_full;  
     Matrix<double, num_classes, num_classes >  exp_weigh_sq_full; 
@@ -50,17 +49,22 @@ public:
     Array<double, num_classes,1> exp_lambda ;
     Array<double, num_classes,1> exp_lambda_sq;
 
-    // decide later
+    // sets prior from input dataset
     void initialize_prior();
 
+    //builds posterior parameters
     void analytical_posterior(double &meaurement);
     
+    //helper function to calculate moments
     void swap_elementInParams(int i);
 
+    // evaluates moments can calulates the moment matched posterior
     void evaluate_moments();
 
+    // updates the dataset and weights (mu, sigmas and a) directly into the input matrix
     void update_aAndDataset();
 
+    //helper function to print params
     void print_params(Params param, string name)
     {
         cout<<param.a<< " "<< name <<" final a"<<endl;
@@ -70,13 +74,14 @@ public:
         cout<<param.gammas<< " "<< name <<" final gammas"<<endl;
     };
 
-    momentmatching(Matrix<double , num_classes, 2> & input_dataSet, Matrix<double , num_classes, 1> & input_a): input_dataSetRef{input_dataSet}, input_aRef{input_a}
+    // constructor which calls the necessary functions. Updates the input dataset itself, so no explicit output
+    momentmatching(Matrix<double , num_classes, 2> & input_dataSet, Matrix<double , num_classes, 1> & input_a, vector<double>& meas): input_dataSetRef{input_dataSet}, input_aRef{input_a} , measurements(meas)
     {
         initialize_prior();
 
-        for(double meas :measurements)
+        for(double measure :measurements)
         {   
-            analytical_posterior(meas);
+            analytical_posterior(measure);
             evaluate_moments();
 
         };
