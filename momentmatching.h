@@ -13,10 +13,11 @@ using namespace std;
 using namespace Eigen;
 
 
+
 class momentmatching 
 {
 public:
-    static constexpr int num_classes = 5; 
+    static constexpr int num_classes = 7; 
     // param struct
     struct Params {
         Array<double, num_classes,1> a;
