@@ -79,6 +79,7 @@ public:
     momentmatching(Matrix<double , num_classes, 2> & input_dataSet, Matrix<double , num_classes, 1> & input_a, vector<double>& meas): input_dataSetRef{input_dataSet}, input_aRef{input_a} , measurements(meas)
     {
         initialize_prior();
+        print_params(prior_params, "prior");
 
         for(double measure :measurements)
         {   
@@ -87,6 +88,7 @@ public:
 
         };
         update_aAndDataset();
+        print_params(prior_params, "prior_next");
         print_params(next_params, "next");
     };
 

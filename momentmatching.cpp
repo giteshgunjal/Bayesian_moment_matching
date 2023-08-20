@@ -80,16 +80,19 @@ void  momentmatching::update_aAndDataset()
 
 int main(int argc, char** argv)
 {   Matrix<double , 7, 1> input_a ;
-    input_a << 5.,5.,5.,5.,5.,5.,5.;
+    input_a << 1.,0.,0.,2.,0.,1.,0.;
     Matrix<double , 7, 2>input_dataSet ;
     input_dataSet<< 0.543, 0.065, //Concrete
                     0.577, 0.077, //Grass
                     0.428, 0.059, //Pebbles
                     0.478, 0.113, //Rocks
-                    0.372, 0.055, //Wood
+                    0.7465, 0.11576, //Wood
                     0.616, 0.048, //Rubber
                     0.583, 0.068; //Rug
-    vector<double> measurements = {0.62,0.62,0.62,0.62,0.62,0.62,0.62,0.62,0.62,0.62};
+    vector<double> measurements = {0.73656991 ,0.73928424, 0.70840188, 0.70207761, 0.77608662, 0.55016238,
+ 0.79474989, 0.68377196, 0.79474989, 0.62806901, 0.77685703, 0.70840188,
+ 0.62747746, 0.87438228, 0.77608662, 0.94011922 ,0.72872695, 0.70922881,
+ 0.77685703, 0.73656991};
 
     momentmatching(input_dataSet, input_a,measurements);
     cout<<input_dataSet<<endl;
